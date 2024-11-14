@@ -1,5 +1,4 @@
-// src/App.js
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';  // Add Link here
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import './App.css';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
