@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import './App.css';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
+import UserContextHandler from './UserContextHandler'; // Import UserContextHandler
+import UserDetailsForm from './UserDetailsForm' ;
 
 const Home = () => {
   return (
@@ -31,10 +33,13 @@ const Home = () => {
 const App = () => {
   return (
     <Router>
+      {/* Ensure user authentication state is checked globally */}
+      <UserContextHandler />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/UserDetailsForm" element={<UserDetailsForm />} />
       </Routes>
     </Router>
   );
