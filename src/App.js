@@ -4,6 +4,7 @@ import SignIn from './SignIn';
 import SignUp from './SignUp';
 import UserContextHandler from './UserContextHandler'; // Import UserContextHandler
 import UserDetailsForm from './UserDetailsForm' ;
+import Dashboard from './Dashboard';
 
 const Home = () => {
   return (
@@ -40,6 +41,7 @@ const App = () => {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/UserDetailsForm" element={<UserDetailsForm />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </Router>
   );

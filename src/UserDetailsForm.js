@@ -20,7 +20,6 @@ const UserDetailsForm = () => {
     weeklyRunFrequency: '',
     runningPace: 180, // In seconds (3 minutes per km)
     exerciseTime: '',
-    mealFrequency: '',
     coffeeIntake: '',
     weightGoal: '',
   });
