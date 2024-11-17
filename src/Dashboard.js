@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { gapi } from 'gapi-script';
+import FullCalendar from '@fullcalendar/react';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import interactionPlugin from '@fullcalendar/interaction';
 
 const Dashboard = () => {
   const [googleCalendarEvents, setGoogleCalendarEvents] = useState([]);
@@ -65,7 +69,8 @@ const Dashboard = () => {
           console.log('Fetched calendar events:', response.items);
           const events = response.items.map((event) => ({
             title: event.summary,
-            date: new Date(event.start.dateTime || event.start.date),
+            start: new Date(event.start.dateTime || event.start.date),
+            end: new Date(event.end.dateTime || event.end.date),
             location: event.location,
             description: event.description,
           }));
@@ -86,21 +91,24 @@ const Dashboard = () => {
           <div className="mt-6">
             <h2 className="text-xl font-semibold">Welcome, {userName}</h2>
             <h3 className="text-lg font-semibold mt-4">Your Google Calendar Events</h3>
-            <div className="mt-4">
-              {googleCalendarEvents.length > 0 ? (
-                <ul>
-                  {googleCalendarEvents.map((event, index) => (
-                    <li key={index} className="py-2">
-                      <div className="font-bold">{event.title}</div>
-                      <div>{event.date.toLocaleString()}</div>
-                      {event.location && <div>Location: {event.location}</div>}
-                      {event.description && <div>Description: {event.description}</div>}
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p>No upcoming events.</p>
-              )}
+
+            {/* FullCalendar Component */}
+            <div className="mt-6">
+              <FullCalendar
+                plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+                initialView="dayGridMonth" // Default view
+                events={googleCalendarEvents}
+                eventClick={(info) => {
+                  alert(`Event: ${info.event.title}\nDescription: ${info.event.extendedProps.description}`);
+                }}
+                eventColor="#378006" // Customize event color
+                headerToolbar={{
+                  left: 'prev,next today',
+                  center: 'title',
+                  right: 'dayGridMonth,timeGridWeek,timeGridDay',
+                }}
+                editable={true} // Enable dragging of events
+              />
             </div>
           </div>
         )}
