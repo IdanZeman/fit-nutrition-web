@@ -6,7 +6,7 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 
 const provider = new GoogleAuthProvider();
 
-const SignUp = () => {
+const Login = ({ onLogin }) => {  // Accept the onLogin prop from App
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -28,6 +28,7 @@ const SignUp = () => {
       // Firestore user reference
       const userRef = doc(db, 'users', user.uid);
       const userDoc = await getDoc(userRef);
+      onLogin(user.displayName);  // Pass username back to App via onLogin
 
       if (!userDoc.exists()) {
         // Create new user in Firestore
@@ -129,4 +130,4 @@ const getGoogleCalendarData = async (user) => {
   );
 };
 
-export default SignUp;
+export default Login;

@@ -12,7 +12,7 @@ const UserContextHandler = () => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (!user) {
         // If user is not logged in, redirect to SignIn page
-        navigate('/signin');
+        navigate('/Login');
       } else {
         // If user is logged in, you can redirect them to other pages
         // For example, navigate to the UserDetailsForm if new user or dashboard
