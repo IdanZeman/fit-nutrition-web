@@ -33,8 +33,8 @@ const Home = () => {
 const App = () => {
   return (
     <Router>
-      {/* Ensure user authentication state is checked globally */}
-      <UserContextHandler />
+      {/* Ensure user authentication state is checked globally
+      <UserContextHandler /> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signin" element={<SignIn />} />
